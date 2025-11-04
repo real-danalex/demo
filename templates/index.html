@@ -1,0 +1,368 @@
+{% extends "base.html" %}
+
+{% block title %}Butterburst Bread - Fresh Bread Delivered Daily in Lagos{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Hero Slider will be styled in CSS */
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- Hero Slider Section -->
+<section class="hero-slider">
+    <div class="slider-container">
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <div class="slide-bg" style="background-image: url('{{ url_for('static', filename='images/hero/slide1.jpg') }}')"></div>
+            <div class="slide-overlay"></div>
+            <div class="container">
+                <div class="slide-content">
+                    <h1 class="slide-title">Lagos's Premier Bakery</h1>
+                    <p class="slide-text">Freshly baked bread delivered to your doorstep daily</p>
+                    <a href="{{ url_for('about') }}" class="btn btn-primary">Learn About Us</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <div class="slide-bg" style="background-image: url('{{ url_for('static', filename='images/hero/slide2.jpg') }}')"></div>
+            <div class="slide-overlay"></div>
+            <div class="container">
+                <div class="slide-content">
+                    <h1 class="slide-title">From Our Bakery to Yours</h1>
+                    <p class="slide-text">Experience the taste of quality and freshness</p>
+                    <a href="{{ url_for('our_process') }}" class="btn btn-primary">Our Process</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <div class="slide-bg" style="background-image: url('{{ url_for('static', filename='images/hero/slide3.jpg') }}')"></div>
+            <div class="slide-overlay"></div>
+            <div class="container">
+                <div class="slide-content">
+                    <h1 class="slide-title">Fresh Baked Breads Daily</h1>
+                    <p class="slide-text">100% quality ingredients, baked with love</p>
+                    <a href="{{ url_for('products') }}" class="btn btn-primary">Order Online</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4 -->
+        <div class="slide">
+            <div class="slide-bg" style="background-image: url('{{ url_for('static', filename='images/hero/slide4.jpg') }}')"></div>
+            <div class="slide-overlay"></div>
+            <div class="container">
+                <div class="slide-content">
+                    <h1 class="slide-title">Become a Customer</h1>
+                    <p class="slide-text">Join thousands of satisfied customers across Lagos</p>
+                    <a href="{{ url_for('register') }}" class="btn btn-primary">Sign Up Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Slider Controls -->
+    <button class="slider-control prev" id="prevSlide">
+        <i class="fas fa-chevron-left"></i>
+    </button>
+    <button class="slider-control next" id="nextSlide">
+        <i class="fas fa-chevron-right"></i>
+    </button>
+
+    <!-- Slider Indicators -->
+    <div class="slider-indicators">
+        <span class="indicator active" data-slide="0"></span>
+        <span class="indicator" data-slide="1"></span>
+        <span class="indicator" data-slide="2"></span>
+        <span class="indicator" data-slide="3"></span>
+    </div>
+</section>
+
+<!-- Mission Statement Section -->
+<section class="mission-section">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">Butterburst Mission</h2>
+            <div class="title-underline"></div>
+        </div>
+        <div class="mission-content">
+            <div class="mission-text">
+                <p>At Butterburst, we aim to be the best bakery in Nigeria, producing highly nutritional, tasty, fresh, and quality bread within the most conducive and hygienic conditions and at the best price for all Nigerians.</p>
+                <p>We have a wide range of products that allows every customer to be able to enjoy the satisfying goodness of our bread.</p>
+                <div class="mission-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50K+</div>
+                        <div class="stat-label">Happy Customers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Fresh Daily</div>
+                    </div>
+                </div>
+            </div>
+            <div class="mission-image">
+                <img src="{{ url_for('static', filename='images/bread.jpg') }}" alt="Fresh Bread">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section">
+    <div class="container">
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-bread-slice"></i>
+                </div>
+                <h3>Sell Fresh Bread</h3>
+                <p>Become a retailer and sell our fresh bread in your area</p>
+                <a href="{{ url_for('register') }}" class="feature-link">Get Started <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3>Distributorship Deal</h3>
+                <p>Partner with us and become an official distributor</p>
+                <a href="{{ url_for('become_distributor') }}" class="feature-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-store"></i>
+                </div>
+                <h3>Wholesale Deals</h3>
+                <p>Partner with us to Get the best prices for bulk orders</p>
+                <a href="{{ url_for('wholesale_order') }}" class="feature-link">Order Now <i class="fas fa-arrow-right"></i></a>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+                <h3>Our Bakery</h3>
+                <p>State-of-the-art facility with modern equipment</p>
+                <a href="{{ url_for('our_process') }}" class="feature-link">View Process <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Preview Section -->
+<section class="products-section">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">Amazingly Tasty Breads</h2>
+            <p class="section-subtitle">Our special freshly baked breads are produced with a unique recipe that delivers a wholesome, delicious bread full of flavor</p>
+            <div class="title-underline"></div>
+        </div>
+
+        <div class="products-grid">
+            {% for product in products %}
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{{ url_for('static', filename='images/products/' ~ product.image) }}" alt="{{ product.name }}">
+                    {% if not product.in_stock %}
+                    <span class="out-of-stock-badge">Out of Stock</span>
+                    {% endif %}
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">{{ product.name }}</h3>
+                    <p class="product-description">{{ product.description[:80] }}...</p>
+                    <div class="product-footer">
+                        <span class="product-price">₦{{ "%.2f"|format(product.price) }}</span>
+                        {% if product.in_stock %}
+                        <form action="{{ url_for('add_to_cart', product_id=product.id) }}" method="POST" class="add-to-cart-form">
+                            <input type="hidden" name="quantity" value="1">
+                            <button type="submit" class="btn btn-cart">
+                                <i class="fas fa-shopping-cart"></i> Add to Cart
+                            </button>
+                        </form>
+                        {% else %}
+                        <button class="btn btn-cart" disabled>Out of Stock</button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <div class="text-center">
+            <a href="{{ url_for('products') }}" class="btn btn-primary">View All Products</a>
+        </div>
+    </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="why-choose-us">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">Why Choose butterburst?</h2>
+            <div class="title-underline"></div>
+        </div>
+
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3>100% Fresh Ingredients</h3>
+                <p>We use only the finest, freshest ingredients in all our products</p>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3>Hygienic Production</h3>
+                <p>Our bakery meets the highest standards of cleanliness and safety</p>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Nutritious & Tasty</h3>
+                <p>Perfectly balanced nutrition without compromising on taste</p>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-tag"></i>
+                </div>
+                <h3>Affordable Prices</h3>
+                <p>Quality bread at prices that work for every Nigerian family</p>
+            </div>
+
+            
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-seedling"></i>
+                 </div>
+                <h3>No Preservatives</h3>
+                <p>Pure, wholesome baking — we keep things simple and natural.</p>
+            </div>
+
+         
+
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Trusted by Thousands</h3>
+                <p>Join our growing family of satisfied customers</p>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-bread-slice"></i>
+                </div>
+                <h3>Variety of Breads</h3>
+                <p>From white to whole wheat, we have a bread for every taste</p>
+            </div>
+
+            <div class="benefit-item">
+                <div class="benefit-icon">
+                    <i class="fas fa-phone-alt"></i>
+                </div>
+                <h3>Excellent Customer Service</h3>
+                <p>We're here to help with any questions or concerns</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+    <div class="container">
+        <div class="section-header text-center">
+            <h2 class="section-title">What Customers Say About Our Bread</h2>
+            <div class="title-underline"></div>
+        </div>
+
+        <div class="testimonials-slider">
+            <div class="testimonial-card">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"The best bread in Lagos! Fresh, soft, and delicious. My family loves it!"</p>
+                <div class="testimonial-author">
+                    
+                    <div class="author-info">
+                        <h4>Mrs. Adebayo</h4>
+                        <span>Lagos Island</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"I've been buying from Butterburst for 3 years. Consistent quality and great service!"</p>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4>Mr. Okonkwo</h4>
+                        <span>Ikeja</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-text">"Perfect for sandwiches and toast. The wheat bread is my favorite!"</p>
+                <div class="testimonial-author">
+                    <div class="author-info">
+                        <h4>Miss Chioma</h4>
+                        <span>Lekki</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2>Ready to Experience Fresh Bread?</h2>
+            <p>Join thousands of satisfied customers who trust CountryFresh for their daily bread</p>
+            <div class="cta-buttons">
+                <a href="{{ url_for('products') }}" class="btn btn-primary">Order Now</a>
+                <a href="{{ url_for('contact') }}" class="btn btn-outline">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/slider.js') }}"></script>
+{% endblock %}

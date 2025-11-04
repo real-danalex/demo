@@ -1,0 +1,190 @@
+/* =========================================
+   Butterburst Bakery - Our Process Page
+   Styled consistently with your global design
+   ========================================= */
+
+.page-header {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));;
+    padding: 80px 0 60px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.breadcrumb {
+    margin-top: 15px;
+    font-size: 0.95rem;
+    color: #ffffff;
+}
+
+.breadcrumb a {
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.breadcrumb a:hover {
+    color: white; /* soft highlight */
+}
+
+/* =========================================
+   Process Intro Section
+   ========================================= */
+
+.process-intro {
+    padding: 60px 0;
+    text-align: center;
+    margin-bottom: 0px;
+    background-color: #ffc107; /* light lavender tone */
+}
+
+.process-intro h2 {
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 20px;
+}
+
+.process-intro p {
+    font-size: 1.1rem;
+    color: white;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+}
+
+/* =========================================
+   Process Steps Section
+   ========================================= */
+
+.process-steps {
+    background: #ffc107;
+    padding: 80px 0;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 40px;
+}
+
+.process-step {
+    background-color: #2c2c2c;
+    border-radius: 16px;
+    padding: 40px 25px;
+    text-align: center;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.process-step.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.step-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px;
+    background: rgba(74, 46, 142, 0.1);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #3E9BD8;
+    font-size: 1.8rem;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.process-step:hover .step-icon {
+    background: #3E9BD8;
+    color: #ffffff;
+}
+
+.process-step h3 {
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 15px;
+}
+
+.process-step p {
+    font-size: 1rem;
+    color: white;
+    line-height: 1.6;
+}
+
+/* =========================================
+   Call to Action Section
+   ========================================= */
+
+.process-cta {
+    background:  linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    padding: 80px 0;
+    text-align: center;
+    margin-top: 0px;
+    color: #ffffff;
+}
+
+.cta-card {
+    max-width: 800px;
+    margin: 0 auto;
+    background:  #2c2c2c;
+    padding: 60px 40px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(74, 46, 142, 0.15);
+}
+
+.cta-card h2 {
+    font-size: 2rem;
+    color:white;
+    margin-bottom: 15px;
+}
+
+.cta-card p {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #3E9BD8;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: var(--accent-color);
+    color: #ffffff;
+}
+
+/* =========================================
+   Responsive Design
+   ========================================= */
+
+@media (max-width: 768px) {
+    .page-header h1 {
+        font-size: 2rem;
+    }
+
+    .process-intro h2 {
+        font-size: 1.6rem;
+    }
+
+    .cta-card {
+        padding: 40px 25px;
+    }
+}

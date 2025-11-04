@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block title %}Our Baking Process - Butterburst{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1>Our Process</h1>
+        <nav class="breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span>/</span>
+            <span>Our Process</span>
+        </nav>
+    </div>
+</section>
+
+<!-- Process Overview -->
+<section class="process-intro">
+    <div class="container">
+        <h2>From Farm to Oven – The Butterburst Way</h2>
+        <p>At Butterburst Bakery, we believe that every loaf tells a story of care, craftsmanship, and quality. 
+           Our process combines traditional baking techniques with modern standards to bring you fresh, 
+           healthy, and flavorful bread every single day.</p>
+    </div>
+</section>
+
+<!-- Process Steps -->
+<section class="process-steps">
+    <div class="container">
+        <div class="process-grid">
+
+            <!-- Step 1 -->
+            <div class="process-step">
+                <div class="step-icon">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <h3>1. Sourcing Quality Ingredients</h3>
+                <p>We start by selecting the finest locally sourced grains, flours, and natural ingredients. 
+                   No preservatives or artificial enhancers — just pure, wholesome goodness.</p>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="process-step">
+                <div class="step-icon">
+                    <i class="fas fa-balance-scale"></i>
+                </div>
+                <h3>2. Perfect Mixing & Kneading</h3>
+                <p>Each dough batch is precisely mixed to achieve the perfect texture. 
+                   Our skilled bakers knead with care to ensure every loaf has the right structure and softness.</p>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="process-step">
+                <div class="step-icon">
+                    <i class="fas fa-hourglass-half"></i>
+                </div>
+                <h3>3. Natural Fermentation</h3>
+                <p>We allow the dough to ferment naturally, enhancing flavor and digestibility — 
+                   just the way traditional bakers have done for generations.</p>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="process-step">
+                <div class="step-icon">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <h3>4. Artisanal Baking</h3>
+                <p>Our breads are baked daily in stone-deck ovens, creating the perfect golden crust and soft interior. 
+                   Each loaf is baked to perfection — never rushed, always fresh.</p>
+            </div>
+
+            <!-- Step 5 -->
+            <div class="process-step">
+                <div class="step-icon">
+                    <i class="fas fa-box-open"></i>
+                </div>
+                <h3>5. Fresh Daily Delivery</h3>
+                <p>Once cooled, our breads are carefully packaged and delivered fresh every morning to homes, 
+                   stores, and cafes — so you always enjoy bread baked the same day.</p>
+            </div>
+            <!-- Step 6 -->
+            <div class="process-step">
+                <div class="step-icon">
+                    <i class="fas fa-smile-beam"></i>
+                </div>
+                <h3>6. Enjoy & Share</h3>
+                <p>Finally, it’s time to savor the fruits of our labor. 
+                   Whether toasted for breakfast or paired with your favorite meal, 
+                   our bread is made to be enjoyed and shared with loved ones.</p>
+                   </div>
+            <!-- Step 7 -->
+            <div class="process-step">
+                <div class="step-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3>7. Commitment to Sustainability</h3>
+                <p>We are dedicated to sustainable practices, from sourcing eco-friendly ingredients 
+                   to minimizing waste in our baking process. Our goal is to nurture both our community 
+                   and the environment.</p> </div>
+            <!-- Step 8 -->
+            <div class="process-step">
+                <div class="step-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>8. Community Engagement</h3>
+                <p>We believe in giving back. Through local partnerships and community events, 
+                   we strive to make a positive impact beyond our bakery walls.</p>
+                   </div>                     
+
+
+        
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="process-cta">
+    <div class="container">
+        <div class="cta-card">
+            <h2>Freshly Baked. Every Single Day.</h2>
+            <p>Experience the difference in every bite. From our ovens to your table — CountryFresh brings 
+               wholesome goodness home.</p>
+            <a href="{{ url_for('products') }}" class="btn btn-primary">
+                <i class="fas fa-shopping-basket"></i> Explore Our Breads
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/process.js') }}"></script>
+{% endblock %}

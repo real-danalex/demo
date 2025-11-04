@@ -1,0 +1,219 @@
+
+<!-- ============================= -->
+<!-- CHECKOUT.HTML -->
+<!-- ============================= -->
+{% extends "base.html" %}
+
+{% block title %}Checkout - Butterburst{% endblock %}
+
+{% block content %}
+
+<section class="page-header">
+    <div class="container">
+        <h1>Checkout</h1>
+        <nav class="breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span>/</span>
+            <a href="{{ url_for('cart') }}">Cart</a>
+            <span>/</span>
+            <span>Checkout</span>
+        </nav>
+    </div>
+</section>
+
+<section class="checkout-section">
+    <div class="container">
+        <!-- Checkout Steps -->
+        <div class="checkout-steps">
+            <div class="step active">
+                <span class="step-number">1</span>
+                <span class="step-text">Cart</span>
+            </div>
+            <div class="step active">
+                <span class="step-number">2</span>
+                <span class="step-text">Checkout</span>
+            </div>
+            <div class="step">
+                <span class="step-number">3</span>
+                <span class="step-text">Confirmation</span>
+            </div>
+        </div>
+
+        <form action="{{ url_for('checkout') }}" method="POST" class="checkout-form">
+            <div class="checkout-layout">
+                <!-- Checkout Form -->
+                <div class="checkout-main">
+                    <!-- Customer Information -->
+                    <div class="checkout-section-card">
+                        <h3><i class="fas fa-user"></i> Customer Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="name">Full Name *</label>
+                                <input type="text" id="name" name="name" 
+                                       value="{{ session.user_name }}" required readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Phone Number *</label>
+                                <input type="tel" id="phone" name="phone" 
+                                       placeholder="08012345678" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+
+                 
+
+                    <!-- Payment Method -->
+                    <div class="checkout-section-card">
+                        <h3><i class="fas fa-credit-card"></i> Payment Method</h3>
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment_method" value="cash" checked>
+                                <div class="option-content">
+                                    <i class="fas fa-money-bill-wave"></i>
+                                    <div>
+                                        <strong>Cash on Delivery</strong>
+                                        <p>Pay when you receive your order</p>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="payment-option">
+                                <input type="radio" name="payment_method" value="transfer">
+                                <div class="option-content">
+                                    <i class="fas fa-university"></i>
+                                    <div>
+                                        <strong>Bank Transfer</strong>
+                                        <p>Transfer to our bank account</p>
+                                    </div>
+                                </div>
+                            </label>
+                            
+                            <label class="payment-option">
+                                <input type="radio" name="payment_method" value="card">
+                                <div class="option-content">
+                                    <i class="fas fa-credit-card"></i>
+                                    <div>
+                                        <strong>Debit/Credit Card</strong>
+                                        <p>Pay securely with your card</p>
+                                    </div>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Additional Notes -->
+                    <div class="checkout-section-card">
+                        <h3><i class="fas fa-comment"></i> Order Notes (Optional)</h3>
+                        <div class="form-group">
+                            <textarea name="order_notes" rows="3" 
+                                      placeholder="Any special instructions for delivery?"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="checkout-sidebar">
+                    <div class="order-summary">
+                        <h3>Order Summary</h3>
+                        
+                        <div class="summary-items">
+                            {% for item in cart %}
+                            <div class="summary-item">
+                                <div class="item-info">
+                                    <span class="item-name">{{ item.product.name }}</span>
+                                    <span class="item-qty">× {{ item.quantity }}</span>
+                                </div>
+                                <span class="item-price">₦{{ "%.2f"|format(item.subtotal) }}</span>
+                            </div>
+                            {% endfor %}
+                        </div>
+
+                        <div class="summary-divider"></div>
+
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span>₦{{ "%.2f"|format(total) }}</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            
+                                {% if total >= 5000 %}
+                                {% else %}
+                            
+                                {% endif %}
+                            </span>
+                        </div>
+
+                        {% if total < 5000 %}
+                        
+                        {% endif %}
+
+                        <div class="summary-divider"></div>
+
+                        <div class="summary-row total">
+                            <span>Total:</span>
+                            <span class="total-amount">₦{{ "%.2f"|format(total + (0 if total >= 5000 else 500)) }}</span>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block btn-large">
+                            <i class="fas fa-lock"></i> Place Order
+                        </button>
+
+                        <div class="security-badge">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Your transaction is secure and encrypted</span>
+                        </div>
+                    </div>
+
+                    <!-- Trust Badges -->
+                    <div class="trust-section">
+                        <div class="trust-item">
+                            <i class="fas fa-truck"></i>
+                            <span>Fast & Reliable Delivery</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-leaf"></i>
+                            <span>100% Fresh Products</span>
+                        </div>
+                        <div class="trust-item">
+                            <i class="fas fa-undo"></i>
+                            <span>Easy Returns Policy</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Form validation
+    document.querySelector('.checkout-form').addEventListener('submit', function(e) {
+        const phone = document.getElementById('phone').value;
+        const phoneRegex = /^[0-9]{11}$/;
+        
+        if (!phoneRegex.test(phone)) {
+            e.preventDefault();
+            alert('Please enter a valid 11-digit phone number');
+            return false;
+        }
+    });
+
+    // Payment method selection feedback
+    document.querySelectorAll('input[name="payment_method"]').forEach(radio => {
+        radio.addEventListener('change', function() {
+            document.querySelectorAll('.payment-option').forEach(opt => {
+                opt.classList.remove('selected');
+            });
+            this.closest('.payment-option').classList.add('selected');
+        });
+    });
+</script>
+{% endblock %}

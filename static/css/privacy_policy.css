@@ -1,0 +1,143 @@
+/* ============================================
+   RESPONSIVE STYLES — PRIVACY POLICY PAGE
+   ============================================ */
+
+/* Base alignment fixes */
+.exchange-box {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+.exchange-option {
+    flex: 1;
+    background: #2c2c2c;
+    color: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    transition: transform 0.3s ease;
+}
+
+.exchange-option i {
+    font-size: 2rem;
+    color: #ffc107;
+    margin-bottom: 0.75rem;
+}
+
+.exchange-option:hover {
+    transform: translateY(-4px);
+}
+
+/* Information boxes alignment */
+.information-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Process steps layout */
+.process-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* ============================================
+   TABLET VIEW
+   ============================================ */
+@media (max-width: 992px) {
+    .exchange-box {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .exchange-option {
+        text-align: left;
+    }
+
+    .policy-section {
+        padding: 2rem 1rem;
+    }
+
+    .information-section,
+    .process-steps {
+        gap: 1rem;
+    }
+}
+
+/* ============================================
+   MOBILE VIEW
+   ============================================ */
+@media (max-width: 600px) {
+    .policy-section {
+        padding: 1.5rem 1rem;
+    }
+
+    .exchange-box {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .exchange-option {
+        padding: 1rem;
+        font-size: 0.95rem;
+    }
+
+    .exchange-option i {
+        font-size: 1.75rem;
+    }
+
+    .inform-item-eligible {
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .process-steps {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .process-steps .step {
+        padding: 1rem;
+        border-radius: 8px;
+        background-color: #2c2c2c;
+    }
+
+    .process-steps .step-content h4 {
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .timeline {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .timeline-item {
+        background-color: #2c2c2c;
+        padding: 1rem;
+        border-radius: 8px;
+    }
+
+    .non-returnable,
+    .satisfaction-guarantee {
+        text-align: center;
+    }
+
+    .satisfaction-guarantee {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.75rem;
+    }
+
+    .satisfaction-guarantee i {
+        font-size: 2rem;
+        color: #ffc107;
+    }
+}

@@ -1,0 +1,310 @@
+{% extends "base.html" %}
+
+{% block title %}Frequently Asked Questions - Butterburst{% endblock %}
+
+
+<!-- Link to policy.css -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/faq.css') }}">
+
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1>Frequently Asked Questions</h1>
+        <nav class="breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span>/</span>
+            <span>FAQs</span>
+        </nav>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section">
+    <div class="container">
+        <!-- Introduction -->
+        <div class="faq-intro">
+            <h2>How Can We Help You?</h2>
+            <p>Find answers to commonly asked questions about our products, ordering, delivery, and more.</p>
+            
+            <!-- Search FAQs -->
+            <div class="faq-search">
+                <input type="text" id="faqSearch" placeholder="Search your question..." class="search-input">
+                <button class="search-btn" onclick="searchFAQs()">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- FAQ Categories -->
+        <div class="faq-categories">
+            <button class="category-btn active" data-category="all">All Questions</button>
+            <button class="category-btn" data-category="products">Products</button>
+            <button class="category-btn" data-category="ordering">Ordering</button>
+            <button class="category-btn" data-category="payment">Payment</button>
+            <button class="category-btn" data-category="account">Account</button>
+        </div>
+
+        <!-- FAQ Accordion -->
+        <div class="faq-container">
+            <!-- Products -->
+            <div class="faq-category" data-category="products">
+                <h3 class="category-title">
+                    <i class="fas fa-bread-slice"></i> Products
+                </h3>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What types of bread do you offer?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We offer a wide variety of freshly baked bread including White Bread, Wheat Bread, Multigrain Bread, Sweet Bread, and special seasonal varieties. All our products are baked fresh daily using quality ingredients.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Are your products preservative-free?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! All our bread products are made without artificial preservatives. We use only natural ingredients to ensure freshness and quality. This is why we recommend consuming our bread within 3 days of purchase or freezing for longer storage.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you offer gluten-free or vegan options?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Currently, our standard products contain gluten. However, we are working on introducing gluten-free and vegan options. Please check back or subscribe to our newsletter for updates on new product launches.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How long does your bread stay fresh?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Our bread stays fresh for 3-4 days when stored in a cool, dry place. For longer storage, you can freeze our bread for up to 1 month. Simply thaw at room temperature or toast directly from frozen.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I request custom orders or bulk quantities?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! We accept custom orders for events, parties, and businesses. Please contact us at least 48 hours in advance for bulk orders. You can reach us via phone at +234 801 234 5678 or email at butterburst@countryfresh.ng.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ordering -->
+            <div class="faq-category" data-category="ordering">
+                <h3 class="category-title">
+                    <i class="fas fa-shopping-cart"></i> Ordering
+                </h3>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do I place an order?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ordering is easy! Simply browse our products, select the items you want, add them to your cart, and proceed to checkout. You'll need to create an account or login to complete your order. You can also call us directly at +234 801 234 5678 to place an order.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What is the minimum order amount?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>There is no minimum order amount! However.</p>
+                    </div>
+                </div>
+
+        
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do I need to create an account to order?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, you need to create an account to place orders through our website. This helps us track your orders, save your delivery addresses, and provide you with a better shopping experience. Registration is quick and free!</p>
+                    </div>
+                </div>
+            </div>
+
+         
+            <!-- Payment -->
+            <div class="faq-category" data-category="payment">
+                <h3 class="category-title">
+                    <i class="fas fa-credit-card"></i> Payment
+                </h3>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>What payment methods do you accept?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We accept multiple payment methods including Bank Transfer, Debit/Credit Cards (Visa, Mastercard), and mobile payments. All card transactions are secure and encrypted.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Is it safe to pay online?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely! We use industry-standard SSL encryption and secure payment gateways to protect your financial information. We never store your complete card details on our servers.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>When will my payment be processed?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>For online payments, your card/account will be charged immediately upon order confirmation. For bank transfers, please make the payment within 24 hours and send proof to info@countryfresh.ng. Cash on delivery is collected at the time of delivery.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Do you offer payment plans or credit?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Currently, we require full payment at the time of order. However, we offer special pricing for wholesale and regular customers. Contact us to discuss bulk purchase options and payment terms.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account -->
+            <div class="faq-category" data-category="account">
+                <h3 class="category-title">
+                    <i class="fas fa-user"></i> Account
+                </h3>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do I create an account?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Click on "Register" in the top menu, fill in your details (name, email, phone, password), and submit. You'll receive a confirmation email. It's free and takes less than 2 minutes!</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>I forgot my password. What should I do?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Click on "Forgot Password" on the login page. Enter your registered email address, and we'll send you a password reset link. Follow the instructions in the email to create a new password.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>Can I change my account information?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! Log in to your account, go to "Dashboard" and click on "Edit Profile" to update your name, phone number, email, or delivery addresses. You can also change your password from the account settings.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>How do I delete my account?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We're sorry to see you go! Please contact our customer service at info@countryfresh.ng with your account deletion request. We'll process it within 48 hours. Note that this action is permanent and cannot be undone.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Still Need Help -->
+        <div class="faq-help">
+            <div class="help-card">
+                <i class="fas fa-headset"></i>
+                <h3>Still Have Questions?</h3>
+                <p>Can't find what you're looking for? Our customer service team is here to help!</p>
+                <div class="help-buttons">
+                    <a href="{{ url_for('contact') }}" class="btn btn-primary">
+                        <i class="fas fa-envelope"></i> Contact Us
+                    </a>
+                    <a href="https://wa.me/2348012345678" class="btn btn-outline" target="_blank">
+                        <i class="fab fa-whatsapp"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("✅ FAQ JS running");
+
+    // Accordion toggle
+    document.querySelectorAll(".faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+            const item = btn.closest(".faq-item");
+            item.classList.toggle("active");
+        });
+    });
+
+    // Category filtering
+    const categoryButtons = document.querySelectorAll(".category-btn");
+    const faqCategories = document.querySelectorAll(".faq-category");
+
+    categoryButtons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+            categoryButtons.forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            const selected = btn.dataset.category;
+
+            faqCategories.forEach((cat) => {
+                cat.style.display =
+                    selected === "all" || cat.dataset.category === selected
+                        ? "block"
+                        : "none";
+            });
+        });
+    });
+
+    // Search
+    const searchInput = document.getElementById("faqSearch");
+    searchInput.addEventListener("keyup", () => {
+        const term = searchInput.value.toLowerCase();
+        document.querySelectorAll(".faq-item").forEach((item) => {
+            const question = item.querySelector(".faq-question span").textContent.toLowerCase();
+            const answer = item.querySelector(".faq-answer p").textContent.toLowerCase();
+            item.style.display = question.includes(term) || answer.includes(term) ? "block" : "none";
+        });
+    });
+});
+</script>
+<script src="{{ url_for('static', filename='js/faq.js') }}"></script>
+{% endblock %}

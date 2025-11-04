@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Server Error - Butterburst Bakery{% endblock %}
+
+{% block content %}
+<section class="error-section server-error">
+  <div class="container">
+    <div class="error-content">
+      <img src="{{ url_for('static', filename='images/500-illustration.svg') }}" alt="Server Error" class="error-image">
+      
+      <h1>Oh Crumbs! Something Went Wrong</h1>
+      <p>Our ovens got a bit too hot. Don’t worry — we’re fixing it as fast as we can!</p>
+
+      <div class="error-actions">
+        <a href="{{ url_for('home') }}" class="btn btn-primary">
+          <i class="fas fa-home"></i> Back to Home
+        </a>
+        <a href="{{ url_for('contact') }}" class="btn btn-outline">
+          <i class="fas fa-envelope"></i> Contact Support
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

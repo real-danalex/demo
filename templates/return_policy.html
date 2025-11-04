@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block title %}Returns & Refund Policy - Butterburst{% endblock %}
+<!-- Link to policy.css -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/policy.css') }}">
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1>Returns & Refund Policy</h1>
+        <nav class="breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span>/</span>
+            <span>Returns Policy</span>
+        </nav>
+    </div>
+</section>
+
+<!-- Returns Policy Section -->
+<section class="policy-section">
+    <div class="container">
+
+        <!-- Policy Summary -->
+        <div class="policy-summary">
+            <div class="summary-item">
+                <i class="fas fa-box-open"></i>
+                <div>
+                    <strong>Return Period</strong>
+                    <p>Within 24 hours of delivery</p>
+                </div>
+            </div>
+            <div class="summary-item">
+                <i class="fas fa-receipt"></i>
+                <div>
+                    <strong>Proof Required</strong>
+                    <p>Receipt or order confirmation</p>
+                </div>
+            </div>
+            <div class="summary-item">
+                <i class="fas fa-hand-holding-usd"></i>
+                <div>
+                    <strong>Refund Method</strong>
+                    <p>Store credit or replacement</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Eligibility -->
+        <div class="eligibility-list">
+            <div class="eligibility-item eligible">
+                <i class="fas fa-check-circle"></i>
+                <div>
+                    <h4>Eligible for Return</h4>
+                    <p>Bread or pastries that arrive damaged, stale, or incorrect.</p>
+                </div>
+            </div>
+
+            <div class="eligibility-item not-eligible">
+                <i class="fas fa-times-circle"></i>
+                <div>
+                    <h4>Not Eligible</h4>
+                    <p>Partially consumed products or items returned after 24 hours.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Process Steps -->
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number"></div>
+                <div class="step-content">
+                    <h4>Contact Us</h4>
+                    <p>Send an email to <strong>butterburst@info.ng</strong> or call <strong>+234 801 234 5678</strong> within 24 hours.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number"></div>
+                <div class="step-content">
+                    <h4>Provide Details</h4>
+                    <p>Include your order number, photos (if applicable), and a short description of the issue.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number"></div>
+                <div class="step-content">
+                    <h4>Resolution</h4>
+                    <p>We’ll review and issue a replacement, store credit, or refund within 1–2 business days.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Non-returnable Items -->
+        <div class="non-returnable">
+            <div class="non-returnable-item">
+                <i class="fas fa-ban"></i>
+                <span>Custom or bulk orders cannot be returned unless defective.</span>
+            </div>
+            <div class="non-returnable-item">
+                <i class="fas fa-ban"></i>
+                <span>Items not stored according to provided care instructions are ineligible.</span>
+            </div>
+        </div>
+
+        <!-- Satisfaction Guarantee -->
+        <div class="satisfaction-guarantee">
+            <div>
+                <h3>Our Freshness Promise</h3>
+                <p>Every loaf is baked with care. If you're not 100% satisfied, we’ll make it right — no questions asked.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/sreturn_policy.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,1030 @@
+/* ============================================
+   POLICY PAGES - CSS STYLING
+   FAQ, Privacy Policy, Return Policy
+   ============================================ */
+
+/* ============================================
+   1. FAQ PAGE
+   ============================================ */
+
+.faq-section {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--bg-light);
+}
+.faq-section{
+    
+    background-color: #ffc107;
+}
+
+.faq-intro {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto var(--spacing-xl);
+}
+
+.faq-intro h2 {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.faq-intro p {
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin-bottom: var(--spacing-md);
+}
+
+/* FAQ Search */
+.faq-search {
+    display: flex;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 0.5rem;
+}
+
+.faq-search .search-input {
+    flex: 1;
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+}
+
+.faq-search .search-btn {
+    padding: 1rem 2rem;
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+    border-radius: var(--radius-lg);
+    font-size: 1rem;
+}
+
+/* FAQ Categories */
+.faq-categories {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: var(--spacing-xl);
+}
+
+.category-btn {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--bg-white);
+    color: var(--text-dark);
+    border: 2px solid var(--border-color);
+    border-radius: var(--radius-lg);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.category-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.category-btn.active {
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+    border-color: var(--primary-color);
+}
+
+/* FAQ Container */
+.faq-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.faq-category {
+    margin-bottom: var(--spacing-xl);
+}
+
+.category-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.75rem;
+    margin-bottom: var(--spacing-md);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.category-title i {
+    color: var(--primary-color);
+}
+
+/* FAQ Item */
+.faq-item {
+    background-color: var(--bg-white);
+    border-radius: var(--radius-lg);
+    margin-bottom: 1rem;
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: box-shadow var(--transition-fast);
+}
+
+.faq-item:hover {
+    box-shadow: var(--shadow-md);
+}
+
+.faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.25rem 1.5rem;
+    background-color: transparent;
+    border: none;
+    text-align: left;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    cursor: pointer;
+    transition: background-color var(--transition-fast);
+}
+/* Ensure FAQ question span text is black */
+.faq-question span {
+    color: black;
+}
+
+.faq-question:hover {
+    background-color: var(--bg-light);
+}
+
+.faq-question i {
+    color: var(--primary-color);
+    transition: transform var(--transition-fast);
+}
+
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+}
+
+.faq-item.active .faq-answer {
+    max-height: 500px;
+    padding: 0 1.5rem 1.25rem;
+}
+
+.faq-answer p {
+    margin: 0;
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+/* FAQ Help Section */
+.faq-help {
+    margin-top: var(--spacing-xl);
+}
+
+.help-card {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: var(--bg-white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-xl);
+    text-align: center;
+}
+
+.help-card i {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.help-card h3 {
+    color: var(--bg-white);
+    margin-bottom: var(--spacing-sm);
+}
+
+.help-card p {
+    color: var(--bg-white);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.1rem;
+}
+
+.help-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ============================================
+   2. POLICY PAGES (Privacy & Return)
+   ============================================ */
+
+.policy-section {
+    padding: var(--spacing-xl) 0;
+    background-color: var(--bg-light);
+}
+.policy-section{
+    
+    background-color: #ffc107;
+}
+
+.policy-layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: var(--spacing-xl);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Policy Sidebar */
+.policy-sidebar {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.policy-nav {
+    background-color: var(--bg-white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--spacing-md);
+}
+.inform-item-eligible {
+    background-color: #2c2c2c!important;
+    display: flex;
+    gap: 1rem;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--border-color);
+}
+.inform-item-ineligible {
+    background-color: #2c2c2c!important;
+    display: flex;
+    gap: 1rem;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--border-color);
+}
+.timeline-item p {
+    color: white!important;
+} 
+.timeline.timeline-item{
+    color: black!important;
+}
+.timeline {
+  background-color: #2c2c2c; /* Dark gray background */
+  color: white;
+  padding: 1.5rem;
+  border-radius: 12px;
+}
+
+.timeline-item {
+  background: transparent; /* Keep items blending in */
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+}
+
+.timeline-item:last-child {
+  border-bottom: none;
+}
+
+    
+
+
+.policy-nav h3 {
+    font-size: 1.25rem;
+    margin-bottom: var(--spacing-sm);
+    padding-bottom: var(--spacing-sm);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.policy-nav-list {
+    list-style: none;
+}
+
+.policy-nav-list li {
+    margin-bottom: 0.5rem;
+}
+
+.policy-nav-list a {
+    display: block;
+    padding: 0.75rem;
+    color: var(--text-dark);
+    border-radius: var(--radius-sm);
+    transition: all var(--transition-fast);
+    font-size: 0.9rem;
+}
+
+.policy-nav-list a:hover,
+.policy-nav-list a.active {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+    padding-left: 1rem;
+}
+
+.policy-highlight {
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: var(--bg-white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.policy-highlight i {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.policy-highlight h4 {
+    color: var(--bg-white);
+    margin-bottom: 0.5rem;
+}
+
+.policy-highlight p {
+    color: var(--bg-white);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.policy-cta {
+    background-color: var(--bg-white);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+}
+
+.policy-cta h4 {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Policy Content */
+.policy-content {
+    background-color: var(--bg-white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.policy-updated {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem;
+    background-color: var(--bg-light);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.policy-section-item {
+    margin-bottom: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.policy-section-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.policy-section-item h2 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-md);
+}
+
+.policy-section-item h3 {
+    font-size: 1.5rem;
+    margin-top: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.policy-section-item h4 {
+    font-size: 1.25rem;
+    margin-top: var(--spacing-sm);
+    margin-bottom: 0.5rem;
+}
+
+.policy-section-item ul,
+.policy-section-item ol {
+    margin: var(--spacing-sm) 0;
+    padding-left: 2rem;
+}
+
+.policy-section-item li {
+    margin-bottom: 0.5rem;
+    line-height: 1.8;
+}
+
+.policy-section-item p {
+    line-height: 1.8;
+}
+
+/* Purpose List */
+.purpose-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: var(--spacing-md);
+}
+
+.purpose-item {
+    display: flex;
+    gap: 1rem;
+    padding: var(--spacing-md);
+    background-color: var(--bg-light);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary-color);
+}
+
+.purpose-item i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-top: 0.25rem;
+}
+
+.purpose-item h4 {
+    margin-bottom: 0.5rem;
+}
+
+.purpose-item p {
+    margin: 0;
+    color: var(--text-light);
+}
+
+/* Rights Grid */
+.rights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+}
+
+.right-item {
+    text-align: center;
+    padding: var(--spacing-md);
+    background-color: var(--bg-light);
+    border-radius: var(--radius-lg);
+}
+
+.right-item i {
+    font-size: 2rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.right-item h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.right-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: var(--text-light);
+}
+
+/* Contact Info Box */
+.contact-info-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+    padding: var(--spacing-md);
+    background-color: var(--bg-light);
+    border-radius: var(--radius-lg);
+}
+
+.contact-item {
+    display: flex;
+    gap: 1rem;
+}
+
+.contact-item i {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-top: 0.25rem;
+}
+
+.contact-item strong {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.contact-item p {
+    margin: 0;
+    color: var(--text-light);
+}
+
+.contact-item a {
+    color: var(--primary-color);
+}
+
+/* Policy Consent */
+.policy-consent {
+    padding: var(--spacing-md);
+    background-color: #fff3cd;
+    border: 2px solid #ffc107;
+    border-radius: var(--radius-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.policy-consent p {
+    margin: 0;
+    color: #856404;
+}
+
+
+.exchange-option i {
+    color: #3E9BD8  !important;
+}
+/* ============================================
+   3. RETURN POLICY SPECIFIC
+   ============================================ */
+
+/* Policy Summary */
+.policy-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: var(--spacing-md);
+    background-color: var(--bg-light);
+    border-radius: var(--radius-lg);
+}
+
+.summary-item i {
+    font-size: 2rem;
+    color: var(--primary-color);
+}
+
+.summary-item strong {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+}
+
+.summary-item p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+/* Eligibility List */
+.eligibility-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: var(--spacing-md) 0;
+}
+
+.eligibility-item {
+    display: flex;
+    gap: 1rem;
+    padding: var(--spacing-md);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--border-color);
+}
+
+.eligibility-item.eligible {
+    background-color: green;
+    border-left-color: var(--success);
+}
+.eligibility-item.not-eligible {
+    background-color: red;
+    border-left-color: var(--danger);
+}
+
+.eligibility-item i {
+    font-size: 1.5rem;
+    margin-top: 0.25rem;
+}
+
+.eligibility-item.eligible i {
+    color: var(--success);
+}
+
+.eligibility-item h4 {
+    margin-bottom: 0.5rem;
+}
+
+.eligibility-item p {
+    margin: 0;
+    color: var(--text-light);
+}
+
+/* Process Steps */
+.process-steps {
+    margin: var(--spacing-md) 0;
+}
+
+.step {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: var(--spacing-md);
+    padding: var(--spacing-md);
+    background-color: var(--bg-light);
+    border-radius: var(--radius-lg);
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-color);
+    color: var(--bg-white);
+    font-size: 1.5rem;
+    font-weight: 700;
+    border-radius: 50%;
+}
+
+.step-content h4 {
+    margin-bottom: 0.5rem;
+}
+
+.step-content p {
+    margin: 0;
+    color: var(--text-light);
+}
+
+/* Timeline */
+.timeline {
+    margin: var(--spacing-md) 0;
+    padding-left: 2rem;
+    border-left: 3px solid var(--primary-color);
+}
+
+.timeline-item {
+    padding: var(--spacing-sm) 0 var(--spacing-sm) var(--spacing-md);
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2rem;
+    top: 1rem;
+    width: 15px;
+    height: 15px;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    border: 3px solid var(--bg-white);
+}
+
+/* Exchange Box */
+.exchange-box {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+}
+
+.exchange-option {
+    padding: var(--spacing-md);
+    background-color: var(--bg-light);
+    border-radius: var(--radius-lg);
+    text-align: center;
+}
+
+.exchange-option i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-sm);
+}
+
+.exchange-option h4 {
+    margin-bottom: 0.5rem;
+}
+
+.exchange-option p {
+    margin: 0;
+    color: var(--text-light);
+}
+
+/* Non-Returnable Items */
+.non-returnable {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin: var(--spacing-md) 0;
+}
+
+.non-returnable-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f8d7da;
+    border-radius: var(--radius-md);
+}
+
+.non-returnable-item i {
+    color: var(--danger);
+    font-size: 1.25rem;
+}
+
+.non-returnable-item span {
+    color: #721c24;
+}
+
+/* Satisfaction Guarantee */
+.satisfaction-guarantee {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: var(--spacing-md);
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    color: var(--bg-white);
+    border-radius: var(--radius-lg);
+    margin-top: var(--spacing-xl);
+}
+
+.satisfaction-guarantee i {
+    font-size: 3rem;
+}
+
+.satisfaction-guarantee h3 {
+    color: var(--bg-white);
+    margin-bottom: 0.5rem;
+}
+
+.satisfaction-guarantee p {
+    color: var(--bg-white);
+    margin: 0;
+}
+
+/* ============================================
+   4. RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .policy-layout {
+        grid-template-columns: 1fr;
+    }
+    
+    .policy-sidebar {
+        position: static;
+    }
+    
+    .policy-nav {
+        display: none;
+    }
+    
+    .policy-content {
+        padding: var(--spacing-md);
+    }
+    
+    .faq-categories {
+        gap: 0.5rem;
+    }
+    
+    .category-btn {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .help-buttons {
+        flex-direction: column;
+    }
+    
+    .process-steps .step {
+        flex-direction: column;
+    }
+    
+    .satisfaction-guarantee {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+/* ============================================
+   POLICY PAGE RESPONSIVE STYLES
+   ============================================ */
+
+/* For Tablets and Smaller Laptops (max-width: 992px) */
+@media (max-width: 992px) {
+  .policy-layout {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  .policy-sidebar {
+    position: static;
+    order: 2;
+    width: 100%;
+  }
+
+  .policy-content {
+    order: 1;
+    padding: 2rem;
+  }
+
+  .policy-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .policy-nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  .policy-nav-list a {
+    font-size: 0.95rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .policy-highlight {
+    margin-top: 1rem;
+  }
+
+  .rights-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+
+  .contact-info-box {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* For Mobile Devices (max-width: 600px) */
+@media (max-width: 600px) {
+  .policy-section {
+    padding: 2rem 1rem;
+  }
+
+  .policy-layout {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .policy-content {
+    padding: 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .policy-sidebar {
+    width: 100%;
+    order: 2;
+  }
+
+  .policy-nav {
+    padding: 1rem;
+    box-shadow: none;
+    background: transparent;
+  }
+
+  .policy-nav-list a {
+    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .policy-section-item h2 {
+    font-size: 1.25rem;
+  }
+
+  .policy-section-item h3 {
+    font-size: 1.1rem;
+  }
+
+  .policy-section-item p,
+  .policy-section-item li {
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .purpose-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .rights-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-info-box {
+    grid-template-columns: 1fr;
+  }
+
+  .policy-consent {
+    font-size: 0.9rem;
+    padding: 1rem;
+  }
+
+  .policy-highlight i {
+    font-size: 2rem;
+  }
+
+  .policy-highlight h4 {
+    font-size: 1rem;
+  }
+}
+/* ----------------------------
+   Privacy/Policy responsive overrides
+   Put this at the *end* of your policy.css (after other rules)
+   ---------------------------- */
+
+/* Ensure exchange box uses flex / grid correctly */
+.exchange-box {
+  display: flex;
+  gap: 1.25rem;
+  align-items: stretch;
+  justify-content: space-between;
+  margin: 1.5rem 0;
+  flex-wrap: nowrap; /* desktop: side-by-side */
+}
+
+/* Each option expands evenly */
+.exchange-option {
+  flex: 1 1 48%;
+  min-width: 220px;
+  box-sizing: border-box;
+  padding: 1.25rem;
+  border-radius: 12px;
+  background: #2c2c2c;
+  color: #fff;
+  text-align: left;
+}
+
+/* Icon styling */
+.exchange-option i {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: #ffc107;
+  font-size: 1.8rem;
+}
+
+/* Make information-section and steps vertical and full width */
+.information-section,
+.process-steps,
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Tablet breakpoint: allow wrapping */
+@media (max-width: 992px) {
+  .exchange-box {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .exchange-option {
+    width: 100%;
+    flex: 1 1 100%;
+    text-align: left;
+  }
+}
+
+/* Mobile - ensure full width stacking */
+@media (max-width: 600px) {
+  .policy-section {
+    padding: 1.25rem;
+  }
+
+  .exchange-box {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .exchange-option {
+    padding: 1rem;
+    font-size: 0.95rem;
+    border-radius: 10px;
+  }
+
+  .inform-item-eligible,
+  .inform-item-ineligible {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+
+  .inform-item-eligible i,
+  .inform-item-ineligible i {
+    font-size: 1.4rem;
+  }
+
+  .process-steps .step,
+  .timeline-item {
+    background: transparent;
+    padding: 0.75rem;
+  }
+}
+

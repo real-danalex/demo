@@ -1,0 +1,146 @@
+{% extends "base.html" %}
+
+{% block title %}Wholesale Orders - Butterburst{% endblock %}
+
+<!-- Link to policy.css -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/wholesale.css') }}">
+
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1>Wholesale Orders</h1>
+        <nav class="breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span>/</span>
+            <span>Wholesale Orders</span>
+        </nav>
+    </div>
+</section>
+
+<!-- Introduction -->
+<section class="wholesale-intro">
+    <div class="container">
+        <h2>Fresh Bread in Bulk, Delivered Daily</h2>
+        <p>Partner with CountryFresh Bakery to supply your business with premium, freshly baked bread. Whether you run a supermarket, hotel, restaurant, or catering service — we’re your trusted wholesale partner.</p>
+    </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="wholesale-benefits">
+    <div class="container">
+        <h2>Why Choose CountryFresh?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <i class="fas fa-bread-slice"></i>
+                <h3>Consistent Quality</h3>
+                <p>Our bread is baked daily using the finest ingredients to ensure freshness and taste every time.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-warehouse"></i>
+                <h3>Reliable Supply</h3>
+                <p>Count on our dependable schedules to keep your shelves stocked without interruption.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-tags"></i>
+                <h3>Competitive Pricing</h3>
+                <p>Enjoy bulk discounts and special rates designed for wholesale customers.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-headset"></i>
+                <h3>Dedicated Support</h3>
+                <p>Our wholesale team is always available to assist with orders, logistics, and product inquiries.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Order Process -->
+<section class="wholesale-process">
+    <div class="container">
+        <h2>How to Place a Wholesale Order</h2>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h4>Fill Out the Order Form</h4>
+                    <p>Provide your business information and order details like your phone number and email address.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h4>Get a Custom Quote</h4>
+                    <p>Our wholesale team will reach out with pricing, terms, and confirmation within 24 hours.</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h4>We Will Get Back To You</h4>
+                    <p>The information been passed is our branches and their location to patronize from.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Wholesale Order Form -->
+<section class="wholesale-form-section">
+    <div class="container">
+        <h2>Request a Wholesale Quote</h2>
+        <p>Complete the form below and we’ll contact you with tailored pricing </p>
+
+        <form id="wholesaleForm" class="wholesale-form">
+            <div class="form-group">
+                <label for="businessName">Business Name *</label>
+                <input type="text" id="businessName" name="businessName" required placeholder="Enter your business name">
+            </div>
+
+            <div class="form-group">
+                <label for="contactName">Contact Person *</label>
+                <input type="text" id="contactName" name="contactName" required placeholder="Your full name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required placeholder="you@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" required placeholder="+234 801 234 5678">
+            </div>
+
+            <div class="form-group">
+                <label for="orderDetails">Order Details *</label>
+                <textarea id="orderDetails" name="orderDetails" required placeholder="Specify product types, quantity, and frequency"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit Request</button>
+        </form>
+
+        <div id="wholesaleSuccess" class="form-success-message" style="display:none;">
+            <i class="fas fa-check-circle"></i> Thank you for your interest! Our wholesale team will reach out shortly.
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="wholesale-cta">
+    <div class="container">
+        <div class="cta-card">
+            <h2>Let’s Bake Success Together</h2>
+            <p>Become a Butterburst partner today and enjoy quality, consistency, and support in every loaf.</p>
+            <a href="{{ url_for('contact') }}" class="btn btn-outline">Contact Us</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/wholesale.js') }}"></script>
+{% endblock %}

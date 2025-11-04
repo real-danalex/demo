@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block title %}Privacy Policy - Butterburst{% endblock %}
+
+<!-- Link to policy.css -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/policy.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/privacy_policy.css') }}">
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1>Privacy Policy</h1>
+        <nav class="breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span>/</span>
+            <span>Privacy Policy</span>
+        </nav>
+    </div>
+</section>
+
+<!-- Privacy Policy Section -->
+<section class="policy-section">
+    <div class="container">
+
+        <!-- Policy Summary -->
+        <div class="policy-summary">
+            <div class="summary-item">
+                <i class="fas fa-user-shield"></i>
+                <div>
+                    <strong>Data Protection</strong>
+                    <p>Your personal data stays private and secure</p>
+                </div>
+            </div>
+            <div class="summary-item">
+                <i class="fas fa-lock"></i>
+                <div>
+                    <strong>Secure Payments</strong>
+                    <p>All transactions are encrypted</p>
+                </div>
+            </div>
+            <div class="summary-item">
+                <i class="fas fa-envelope-open-text"></i>
+                <div>
+                    <strong>Transparency</strong>
+                    <p>We never sell your information</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Information We Collect -->
+        <div class="information-section">
+            <div class="inform-item-eligible">
+                <i class="fas fa-database"></i>
+                <div>
+                    <h4>Information We Collect</h4>
+                    <p>We collect your name, email, phone number, and delivery details to process orders and improve your experience.</p><br>
+                    <i class="fas fa-cookie-bite"></i>
+                    <div>
+                        <h4>Cookies & Tracking</h4>
+                        <p>We use cookies to personalize your shopping experience and analyze site usage for improvements.</p>
+                </div>
+            </div>
+
+            <div class="">
+                <i class=""></i>
+                <div>
+                    <h4></h4>
+                    <p></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- How We Use Your Information -->
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number"></div>
+                <div class="step-content">
+                    <h4>Order Processing</h4>
+                    <p>We use your data to confirm and prepare your orders accurately and efficiently.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number"></div>
+                <div class="step-content">
+                    <h4>Customer Support</h4>
+                    <p>We use your information to respond to inquiries, feedback, and issue resolution.</p>
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number"></div>
+                <div class="step-content">
+                    <h4>Marketing (With Consent)</h4>
+                    <p>We may send occasional updates about promotions and new products if you’ve opted in.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Sharing -->
+        <div class="exchange-box">
+            <div class="exchange-option">
+                <i class="fas fa-shield-alt"></i>
+                <h4>Third-Party Partners</h4>
+                <p>We share limited data only with trusted partners such as payment processors and delivery companies to complete your order.</p>
+            </div>
+            <div class="exchange-option">
+                <i class="fas fa-balance-scale"></i>
+                <h4>Legal Requirements</h4>
+                <p>We may disclose data if required by law or to protect our rights and customers’ safety.</p>
+            </div>
+        </div>
+
+        <!-- Data Retention -->
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>How Long We Keep Data</h4>
+                <p>Your data is retained only as long as needed for operational, legal, or reporting purposes.</p>
+            </div>
+            <div class="timeline-item">
+                <h4>Your Rights</h4>
+                <p>You may request access, correction, or deletion of your personal information anytime by contacting <strong></strong>.</p>
+            </div>
+        </div>
+
+        <!-- Security Notice -->
+        <div class="non-returnable">
+            <div class="non-returnable-item">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Never share your password or payment details with anyone claiming to represent Butterburst Bakery.</span>
+            </div>
+        </div>
+
+        <!-- Trust & Transparency -->
+        <div class="satisfaction-guarantee">
+            <i class="fas fa-handshake"></i>
+            <div>
+                <h3>Our Commitment to Your Privacy</h3>
+                <p>We value your trust and strive to protect your information with care and transparency.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/privacy_policy.js') }}"></script>
+{% endblock %}

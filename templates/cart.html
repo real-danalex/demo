@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block title %}Shopping Cart - Butterburst{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1>Shopping Cart</h1>
+        <nav class="breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span>/</span>
+            <span>Cart</span>
+        </nav>
+    </div>
+</section>
+
+<!-- Cart Section -->
+<section class="cart-section">
+    <div class="container">
+        {% if cart %}
+        <div class="cart-layout">
+            <!-- Cart Items -->
+            <div class="cart-items">
+                <h2>Your Cart ({{ cart|length }} items)</h2>
+                
+                {% for item in cart %}
+                <div class="cart-item">
+                    <div class="item-image">
+                        <img src="{{ url_for('static', filename='images/products/' ~ item.product.image) }}" 
+                             alt="{{ item.product.name }}">
+                    </div>
+                    <div class="item-details">
+                        <h3 class="item-name">
+                            <a href="{{ url_for('product_detail', product_id=item.product.id) }}">
+                                {{ item.product.name }}
+                            </a>
+                        </h3>
+                        <p class="item-category">{{ item.product.category|title }} Bread</p>
+                        <p class="item-price">₦{{ "%.2f"|format(item.product.price) }} per loaf</p>
+                    </div>
+                    <div class="item-quantity">
+                        <form action="{{ url_for('update_cart', product_id=item.product.id) }}" 
+                              method="POST" class="quantity-form">
+                            <div class="quantity-control">
+                                <button type="button" class="qty-btn" onclick="updateQuantity(this, -1)">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                                <input type="number" name="quantity" value="{{ item.quantity }}" 
+                                       min="1" max="99" class="qty-input" readonly>
+                                <button type="button" class="qty-btn" onclick="updateQuantity(this, 1)">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <button type="submit" class="update-btn" style="display: none;">Update</button>
+                        </form>
+                    </div>
+                    <div class="item-subtotal">
+                        <span class="subtotal-label">Subtotal:</span>
+                        <span class="subtotal-amount">₦{{ "%.2f"|format(item.subtotal) }}</span>
+                    </div>
+                    <div class="item-remove">
+                        <a href="{{ url_for('remove_from_cart', product_id=item.product.id) }}" 
+                           class="remove-btn" 
+                           onclick="return confirm('Remove this item from cart?')">
+                            <i class="fas fa-trash-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <div class="cart-actions">
+                    <a href="{{ url_for('products') }}" class="btn btn-outline">
+                        <i class="fas fa-arrow-left"></i> Continue Shopping
+                    </a>
+                </div>
+            </div>
+
+            <!-- Cart Summary -->
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                
+                <div class="summary-row">
+                    <span>Subtotal:</span>
+                    <span>₦{{ "%.2f"|format(total) }}</span>
+                </div>
+                <div class="summary-row">
+                    <span></span>
+                    <span>
+                        {% if total >= 5000 %}
+                            <span class="free-delivery">FREE</span>
+                        {% else %}
+                            
+                        {% endif %}
+                    </span>
+                </div>
+                {% if total < 5000 %}
+               
+                {% endif %}
+                <div class="summary-divider"></div>
+                <div class="summary-row total-row">
+                    <span>Total:</span>
+                    <span class="total-amount">
+                        ₦{{ "%.2f"|format(total + (0 if total >= 5000 else 500)) }}
+                    </span>
+                </div>
+
+                <div class="summary-actions">
+                    {% if session.user_id %}
+                        <a href="{{ url_for('checkout') }}" class="btn btn-primary btn-block">
+                            <i class="fas fa-lock"></i> Proceed to Checkout
+                        </a>
+                    {% else %}
+                        <a href="{{ url_for('login') }}" class="btn btn-primary btn-block">
+                            <i class="fas fa-sign-in-alt"></i> Login to Checkout
+                        </a>
+                        <p class="login-notice">
+                            Don't have an account? 
+                            <a href="{{ url_for('register') }}">Register here</a>
+                        </p>
+                    {% endif %}
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="trust-badges">
+                    <div class="badge-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure Payment</span>
+                    </div>
+                   
+                    </div>
+                    <div class="badge-item">
+                        <i class="fas fa-undo"></i>
+                        <span>Easy Returns</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% else %}
+        <!-- Empty Cart -->
+        <div class="empty-cart">
+            <i class="fas fa-shopping-cart"></i>
+            <h2>Your Cart is Empty</h2>
+            <p>Looks like you haven't added anything to your cart yet.</p>
+            <a href="{{ url_for('products') }}" class="btn btn-primary">
+                <i class="fas fa-shopping-bag"></i> Start Shopping
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    function updateQuantity(btn, change) {
+        const form = btn.closest('.quantity-form');
+        const input = form.querySelector('.qty-input');
+        const updateBtn = form.querySelector('.update-btn');
+        let value = parseInt(input.value);
+        
+        value += change;
+        if (value < 1) value = 1;
+        if (value > 99) value = 99;
+        
+        input.value = value;
+        
+        // Show update button and auto-submit after 1 second
+        updateBtn.style.display = 'inline-block';
+        clearTimeout(window.updateTimer);
+        window.updateTimer = setTimeout(() => {
+            form.submit();
+        }, 1000);
+    }
+
+    // Confirm remove item
+    document.querySelectorAll('.remove-btn').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+            if (!confirm('Remove this item from your cart?')) {
+                e.preventDefault();
+            }
+        });
+    });
+</script>
+{% endblock %}

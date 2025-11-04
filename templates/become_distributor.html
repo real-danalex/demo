@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}Become a Distributor - Butterburst{% endblock %}
+
+<!-- Link to policy.css -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/distributor.css') }}">
+
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1>Become a Distributor</h1>
+        <nav class="breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span>/</span>
+            <span>Become a Distributor</span>
+        </nav>
+    </div>
+</section>
+
+<!-- Introduction Section -->
+<section class="distributor-intro">
+    <div class="container">
+        <h2>Partner With Butterburst</h2>
+        <p>Join our growing network of distributors and bring the taste of freshly baked goodness to your community. At CountryFresh, we value partnerships that share our passion for quality, freshness, and customer satisfaction.</p>
+    </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="distributor-benefits">
+    <div class="container">
+        <h2>Why Partner With Us?</h2>
+        <div class="benefits-grid">
+            <div class="benefit-item">
+                <i class="fas fa-bread-slice"></i>
+                <h3>Premium Products</h3>
+                <p>Distribute a variety of high-quality, freshly baked bread and pastries loved by customers nationwide.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-handshake"></i>
+                <h3>Reliable Partnership</h3>
+                <p>We believe in building strong, transparent, and long-term relationships with our distributors.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-truck-loading"></i>
+                <h3>Efficient Supply Chain</h3>
+                <p>Enjoy fast and consistent deliveries directly from our bakery to your distribution points.</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-chart-line"></i>
+                <h3>Marketing Support</h3>
+                <p>Gain access to branded materials, promotional campaigns, and ongoing sales support.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Requirements Section -->
+<section class="distributor-requirements">
+    <div class="container">
+        <h2>What You’ll Need</h2>
+        <ul class="requirements-list">
+            <li><i class="fas fa-check-circle"></i> A valid business license or registration</li>
+            <li><i class="fas fa-check-circle"></i> A warehouse or retail outlet for product storage</li>
+            <li><i class="fas fa-check-circle"></i> Basic logistics or transportation capability</li>
+            <li><i class="fas fa-check-circle"></i> Commitment to freshness and customer satisfaction</li>
+        </ul>
+    </div>
+</section>
+
+<!-- Application Form Section -->
+<section class="distributor-form-section">
+    <div class="container">
+        <h2>Apply to Become a Distributor</h2>
+        <p>Fill out the form below and our business development team will get in touch with you within 48 hours.</p>
+
+        <form id="distributorForm" class="distributor-form">
+            <div class="form-group">
+                <label for="name">Full Name *</label>
+                <input type="text" id="name" name="name" required placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input type="email" id="email" name="email" required placeholder="you@example.com">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="tel" id="phone" name="phone" required placeholder="801 234 5678">
+            </div>
+
+            <div class="form-group">
+                <label for="location">Business Location *</label>
+                <input type="text" id="location" name="location" required placeholder="City / State">
+            </div>
+
+            <div class="form-group">
+                <label for="experience">Distribution Experience</label>
+                <textarea id="experience" name="experience" placeholder="Briefly describe your business experience"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit Application</button>
+        </form>
+
+        <div id="formSuccess" class="form-success-message" style="display:none;">
+            <i class="fas fa-check-circle"></i> Thank you for applying! We’ll contact you soon.
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action -->
+<section class="distributor-cta">
+    <div class="container">
+        <div class="cta-card">
+            <h2>Join Our Fresh Journey</h2>
+            <p>Be a part of the CountryFresh family and grow with us as we spread the joy of freshly baked bread across the nation.</p>
+            <a href="{{ url_for('contact') }}" class="btn btn-outline">Contact Us</a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/distributor.js') }}"></script>
+{% endblock %}

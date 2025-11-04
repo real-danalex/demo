@@ -1,0 +1,373 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} - Butterburst{% endblock %}
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <nav class="breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span>/</span>
+            <a href="{{ url_for('products') }}">Products</a>
+            <span>/</span>
+            <span>{{ product.name }}</span>
+        </nav>
+    </div>
+</section>
+
+<!-- Product Detail Section -->
+<section class="product-detail-section">
+    <div class="container">
+        <div class="product-detail-grid">
+            <!-- Product Image -->
+            <div class="product-image-section">
+                <div class="main-image">
+                    <img src="{{ url_for('static', filename='images/products/' ~ product.image) }}" 
+                         alt="{{ product.name }}"
+                         id="mainImage"
+                         onerror="this.src='{{ url_for('static', filename='images/products/placeholder.jpg') }}'">
+                    {% if not product.in_stock %}
+                    <div class="stock-badge out-of-stock">Out of Stock</div>
+                    {% else %}
+                    <div class="stock-badge in-stock">In Stock</div>
+                    {% endif %}
+                </div>
+                <div class="image-thumbnails">
+                    <img src="{{ url_for('static', filename='images/products/' ~ product.image) }}" 
+                         alt="{{ product.name }}" class="thumbnail active"
+                         onclick="changeImage(this.src)">
+                    <!-- Add more thumbnails if you have multiple images -->
+                </div>
+            </div>
+
+            <!-- Product Information -->
+            <div class="product-info-section">
+                <span class="product-category">{{ product.category|title }} Bread</span>
+                <h1 class="product-title">{{ product.name }}</h1>
+                
+                <!-- Rating (Static for now) -->
+                <div class="product-rating">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <span class="rating-text">(4.5 out of 5 based on 127 reviews)</span>
+                </div>
+
+                <!-- Price -->
+                <div class="product-price-section">
+                    <span class="current-price">₦{{ "%.2f"|format(product.price) }}</span>
+                    <span class="price-label">per loaf</span>
+                </div>
+
+                <!-- Description -->
+                <div class="product-description">
+                    <h3>Description</h3>
+                    <p>{{ product.description }}</p>
+                </div>
+
+                <!-- Product Features -->
+                <div class="product-features">
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Freshly baked daily</li>
+                        <li><i class="fas fa-check-circle"></i> 100% quality ingredients</li>
+                        <li><i class="fas fa-check-circle"></i> No preservatives</li>
+                        <li><i class="fas fa-check-circle"></i> Hygienic production</li>
+                    </ul>
+                </div>
+
+                <!-- Add to Cart Form -->
+                {% if product.in_stock %}
+                <form action="{{ url_for('add_to_cart', product_id=product.id) }}" 
+                      method="POST" class="product-order-form">
+                    <div class="quantity-section">
+                        <label>Quantity:</label>
+                        <div class="quantity-control">
+                            <button type="button" class="qty-btn" onclick="decrementQty()">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <input type="number" name="quantity" id="quantity" value="1" min="1" max="99">
+                            <button type="button" class="qty-btn" onclick="incrementQty()">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button type="submit" class="btn btn-primary btn-large">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <a href="{{ url_for('products') }}" class="btn btn-outline btn-large">
+                            Continue Shopping
+                        </a>
+                    </div>
+                </form>
+                {% else %}
+                <div class="out-of-stock-notice">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>This product is currently out of stock. Please check back later or browse our other products.</p>
+                    <a href="{{ url_for('products') }}" class="btn btn-primary">Browse Products</a>
+                </div>
+                {% endif %}
+
+                <!-- Product Meta -->
+                <div class="product-meta">
+                    <div class="meta-item">
+                        <strong>SKU:</strong> <span>BRD-{{ "%03d"|format(product.id) }}</span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>Category:</strong> <span>{{ product.category|title }}</span>
+                    </div>
+                    <div class="meta-item">
+                        <strong>Tags:</strong> 
+                        <span>Fresh, Daily Baked, Nigerian Bread</span>
+                    </div>
+                </div>
+
+                <!-- Share Product -->
+                <div class="product-share">
+                    <strong>Share:</strong>
+                    <a href="#" class="share-btn facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="share-btn twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="share-btn whatsapp"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#" class="share-btn pinterest"><i class="fab fa-pinterest-p"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Details Tabs -->
+        <div class="product-tabs">
+            <div class="tabs-header">
+                <button class="tab-btn active" data-tab="description">Description</button>
+                <button class="tab-btn" data-tab="nutrition">Nutrition Info</button>
+                <button class="tab-btn" data-tab="reviews">Reviews</button>
+            </div>
+
+            <div class="tabs-content">
+                <!-- Description Tab -->
+                <div class="tab-pane active" id="description">
+                    <h3>Product Description</h3>
+                    <p>{{ product.description }}</p>
+                    <h4>Key Features:</h4>
+                    <ul>
+                        <li>Made with premium quality flour</li>
+                        <li>Baked fresh every day in our state-of-the-art facility</li>
+                        <li>Perfect texture - soft and fluffy</li>
+                        <li>Great for sandwiches, toast, or on its own</li>
+                        <li>No artificial preservatives or colors</li>
+                    </ul>
+                    <h4>Storage Instructions:</h4>
+                    <p>Store in a cool, dry place. Best consumed within 3 days of purchase. Can be frozen for up to 1 month.</p>
+                </div>
+
+                <!-- Nutrition Tab -->
+                <div class="tab-pane" id="nutrition">
+                    <h3>Nutritional Information</h3>
+                    <p>Per 100g serving:</p>
+                    <table class="nutrition-table">
+                        <tr>
+                            <td>Energy</td>
+                            <td>265 kcal</td>
+                        </tr>
+                        <tr>
+                            <td>Protein</td>
+                            <td>8.5g</td>
+                        </tr>
+                        <tr>
+                            <td>Carbohydrates</td>
+                            <td>49g</td>
+                        </tr>
+                        <tr>
+                            <td>Fat</td>
+                            <td>3.2g</td>
+                        </tr>
+                        <tr>
+                            <td>Fiber</td>
+                            <td>2.7g</td>
+                        </tr>
+                        <tr>
+                            <td>Sodium</td>
+                            <td>500mg</td>
+                        </tr>
+                    </table>
+                    <p><strong>Ingredients:</strong> Wheat flour, water, yeast, salt, sugar, vegetable oil, improver.</p>
+                </div>
+
+                <!-- Reviews Tab -->
+                <div class="tab-pane" id="reviews">
+                    <h3>Customer Reviews</h3>
+                    
+                    <div class="reviews-summary">
+                        <div class="rating-average">
+                            <div class="rating-number">4.5</div>
+                            <div class="rating-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <div class="rating-count">Based on 127 reviews</div>
+                        </div>
+                    </div>
+
+                    <div class="reviews-list">
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <strong>Mrs. Johnson</strong>
+                                    <div class="review-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">2 days ago</span>
+                            </div>
+                            <p class="review-text">Excellent quality bread! Fresh and tasty. My family loves it.</p>
+                        </div>
+
+                        <div class="review-item">
+                            <div class="review-header">
+                                <div class="reviewer-info">
+                                    <strong>Mr. Obi</strong>
+                                    <div class="review-stars">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="far fa-star"></i>
+                                    </div>
+                                </div>
+                                <span class="review-date">1 week ago</span>
+                            </div>
+                            <p class="review-text">Very good bread. Perfect for breakfast toast.</p>
+                        </div>
+                    </div>
+
+                    {% if session.user_id %}
+                    <div class="write-review">
+                        <h4>Write a Review</h4>
+                        <form class="review-form">
+                            <div class="form-group">
+                                <label>Your Rating:</label>
+                                <div class="star-rating-input">
+                                    <i class="far fa-star" data-rating="1"></i>
+                                    <i class="far fa-star" data-rating="2"></i>
+                                    <i class="far fa-star" data-rating="3"></i>
+                                    <i class="far fa-star" data-rating="4"></i>
+                                    <i class="far fa-star" data-rating="5"></i>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Your Review:</label>
+                                <textarea rows="4" placeholder="Share your experience..."></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Submit Review</button>
+                        </form>
+                    </div>
+                    {% else %}
+                    <div class="login-prompt">
+                        <p>Please <a href="{{ url_for('login') }}">login</a> to write a review.</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Related Products -->
+{% if related_products %}
+<section class="related-products-section">
+    <div class="container">
+        <h2 class="section-title">Related Products</h2>
+        <div class="products-grid">
+            {% for rp in related_products %}
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="{{ url_for('static', filename='images/products/' ~ rp.image) }}" alt="{{ rp.name }}">
+                    <div class="product-overlay">
+                        <a href="{{ url_for('product_detail', product_id=rp.id) }}" class="overlay-btn">View Details</a>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">{{ rp.name }}</h3>
+                    <span class="product-price">₦{{ "%.2f"|format(rp.price) }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endif %}
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    // Quantity controls
+    function incrementQty() {
+        const input = document.getElementById('quantity');
+        let value = parseInt(input.value);
+        if (value < 99) {
+            input.value = value + 1;
+        }
+    }
+
+    function decrementQty() {
+        const input = document.getElementById('quantity');
+        let value = parseInt(input.value);
+        if (value > 1) {
+            input.value = value - 1;
+        }
+    }
+
+    // Image gallery
+    function changeImage(src) {
+        document.getElementById('mainImage').src = src;
+        document.querySelectorAll('.thumbnail').forEach(thumb => {
+            thumb.classList.remove('active');
+        });
+        event.target.classList.add('active');
+    }
+
+    // Tabs functionality
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const tabId = this.dataset.tab;
+            
+            // Remove active class from all tabs and buttons
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+            
+            // Add active class to clicked button and corresponding tab
+            this.classList.add('active');
+            document.getElementById(tabId).classList.add('active');
+        });
+    });
+
+    // Star rating input
+    document.querySelectorAll('.star-rating-input i').forEach(star => {
+        star.addEventListener('click', function() {
+            const rating = this.dataset.rating;
+            document.querySelectorAll('.star-rating-input i').forEach((s, index) => {
+                if (index < rating) {
+                    s.classList.remove('far');
+                    s.classList.add('fas');
+                } else {
+                    s.classList.remove('fas');
+                    s.classList.add('far');
+                }
+            });
+        });
+    });
+</script>
+{% endblock %}

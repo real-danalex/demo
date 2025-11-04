@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Premium bakery in Lagos, Nigeria. Fresh bread delivered daily. Quality bread at affordable prices.">
+    <meta name="keywords" content="bakery, fresh bread, Lagos, Nigeria, wholesale bread, bread delivery">
+    <title>{% block title %}Butterburst Bakery - Fresh Bread Daily{% endblock %}</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/components.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/distributor.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/wholesale.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/policy.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/process.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css')}}">
+   
+   
+
+
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+
+  
+    
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    
+    <!-- Header -->
+    <header class="main-header">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-content">
+                    <div class="contact-info">
+                        <a href="tel:+2348012345678"><i class="fas fa-phone"></i> +234 801 234 5678</a>
+                        <a href="mailto:butterburst.ng"><i class="fas fa-envelope"></i> butterburst@.ng</a>
+                    </div>
+                    <div class="top-bar-right">
+                        {% if session.user_id %}
+                            <span class="user-greeting">Hello, {{ session.user_name }}!</span>
+                            <a href="{{ url_for('dashboard') }}"><i class="fas fa-user"></i> Dashboard</a>
+                            <a href="{{ url_for('logout') }}"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        {% else %}
+                            <a href="{{ url_for('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a>
+                            <a href="{{ url_for('register') }}"><i class="fas fa-user-plus"></i> Register</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navigation -->
+        <nav class="main-nav">
+            <div class="container">
+                <div class="nav-content">
+                    <!-- Logo -->
+                    <a href="{{ url_for('home') }}" class="logo">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="">
+                        <span class="logo-text">Butterburst</span>
+                    </a>
+
+                    <!-- Mobile Menu Toggle -->
+                    <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <!-- Navigation Menu -->
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="{{ url_for('home') }}" class="{% if request.endpoint == 'home' %}active{% endif %}">Home</a></li>
+                        <li><a href="{{ url_for('about') }}" class="{% if request.endpoint == 'about' %}active{% endif %}">About Us</a></li>
+                        <li><a href="{{ url_for('products') }}" class="{% if request.endpoint == 'products' %}active{% endif %}">Products</a></li>
+                        <li><a href="{{ url_for('our_process') }}" class="{% if request.endpoint == 'our_process' %}active{% endif %}">Our Process</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle">Services <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{{ url_for('become_distributor') }}">Become a Distributor</a></li>
+                                <li><a href="{{ url_for('wholesale') }}">Become a Wholesaler</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="{{ url_for('contact') }}" class="{% if request.endpoint == 'contact' %}active{% endif %}">Contact</a></li>
+                    </ul>
+
+                    <!-- Cart Icon -->
+                    <div class="nav-actions">
+                        <a href="{{ url_for('cart') }}" class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count" id="cartCount">0</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            <div class="flash-messages">
+                <div class="container">
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            <span>{{ message }}</span>
+                            <button class="alert-close" onclick="this.parentElement.remove()">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    <!-- Main Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-grid">
+                    <!-- About Column -->
+                    <div class="footer-col">
+                        <h3>About Butterburst</h3>
+                        <p>We are Nigeria's leading bakery, committed to producing the freshest, most nutritious bread at affordable prices for all Nigerians.</p>
+                        <div class="social-links">
+                            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Links -->
+                    <div class="footer-col">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="{{ url_for('about') }}">About Us</a></li>
+                            <li><a href="{{ url_for('products') }}">Our Products</a></li>
+                            <li><a href="{{ url_for('our_process') }}">Our Process</a></li>
+                            <li><a href="{{ url_for('become_distributor') }}">Become a Distributor</a></li>
+                            <li><a href="{{ url_for('wholesale') }}">Become a Wholesaler</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Customer Service -->
+                    <div class="footer-col">
+                        <h3>Customer Service</h3>
+                        <ul>
+                            <li><a href="{{ url_for('contact') }}">Contact Us</a></li>
+                            <li><a href="{{ url_for('FAQs')}}">FAQs</a></li>
+                            <li><a href="{{ url_for('return_policy')}}"></a></li>
+                            <li><a href="{{ url_for('privacy_policy')}}">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="footer-col">
+                        <h3>Contact Us</h3>
+                        <ul class="contact-list">
+                            <li>
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>123 Bakery Street, Lagos, Nigeria</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-phone"></i>
+                                <span>+234 801 234 5678</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-envelope"></i>
+                                <span>butterburst@.ng</span>
+                            </li>
+                            <li>
+                                <i class="fas fa-clock"></i>
+                                <span>Mon - Sat: 6:00 AM - 8:00 PM</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <div class="container">
+                <div class="footer-bottom-content">
+                    <p>&copy; 2025 Butterburst Bakery. All rights reserved.</p>
+                    <div class="payment-methods">
+                        <span>We Accept:</span>
+                        <i class="fab fa-cc-visa"></i>
+                        <i class="fab fa-cc-mastercard"></i>
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/2348012345678" class="whatsapp-float" target="_blank" title="Chat with us on WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+     
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/cart.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/distributor.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/faq.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/privacy_policy.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/process.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/slider.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/sreturn_policy.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/validation.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/wholesale.js') }}"></script>
+
+    {% block extra_js %}{% endblock %}
+
+    
+
+    
+    <!-- Update Cart Count -->
+    <script>
+        // Update cart count on page load
+        fetch('/api/cart-count')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('cartCount').textContent = data.count;
+            })
+            .catch(error => console.error('Error fetching cart count:', error));
+    </script>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const alerts = document.querySelectorAll(".alert");
+        alerts.forEach(alert => {
+            setTimeout(() => {
+            alert.classList.add("hide");
+            setTimeout(() => alert.remove(), 400);
+        }, 3000); // Auto hides after 3 seconds
+  });
+});
+</script>
+
+</body>
+</html>

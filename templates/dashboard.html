@@ -1,0 +1,474 @@
+{% extends "base.html" %}
+
+{% block title %}My Dashboard - Butterburst{% endblock %}
+
+<!-- Link to dashboard.css for custom dashboard styling -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+
+{% block content %}
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="container">
+        <h1>Dashboard</h1>
+        <nav class="breadcrumb">
+            <a href="{{ url_for('home') }}">Home</a>
+            <span>/</span>
+            <span>Dashboard</span>
+        </nav>
+    </div>
+</section>
+
+
+<!-- Dashboard Section -->
+<section class="dashboard-section">
+    <div class="container">
+        <div class="dashboard-layout">
+            <!-- Sidebar Navigation -->
+            <aside class="dashboard-sidebar">
+                <div class="user-profile-card">
+                    <div class="profile-avatar">
+                        
+                    </div>
+                    <h3>{{ user.name }}</h3>
+                    <p>{{ user.email }}</p>
+                    <span class="user-badge">{{ user.user_type|title }} Account</span>
+                </div>
+
+                <nav class="dashboard-nav">
+                    <a href="#overview" class="nav-item active" data-tab="overview">
+                        <i class="fas fa-home"></i>
+                        <span>Overview</span>
+                    </a>
+                    <a href="#orders" class="nav-item" data-tab="orders">
+                        <i class="fas fa-shopping-bag"></i>
+                        <span>My Orders</span>
+                        {% if orders|length > 0 %}
+                        <span class="badge">{{ orders|length }}</span>
+                        {% endif %}
+                    </a>
+                    
+                    <a href="#profile" class="nav-item" data-tab="profile">
+                        <i class="fas fa-user-edit"></i>
+                        <span>Edit Profile</span>
+                    </a>
+                    <a href="#password" class="nav-item" data-tab="password">
+                        <i class="fas fa-lock"></i>
+                        <span>Change Password</span>
+                    </a>
+                    
+                    <a href="{{ url_for('logout') }}" class="nav-item logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="dashboard-main">
+                <!-- Overview Tab -->
+                <div class="tab-content active" id="overview">
+                    <div class="dashboard-header">
+                        <div>
+                            <h1>Welcome back, {{ user.name.split()[0] }}! 👋</h1>
+                            <p>Here's what's happening with your account</p>
+                        </div>
+                        <button class="btn btn-primary" onclick="window.location.href='{{ url_for('products') }}'">
+                            <i class="fas fa-shopping-cart"></i> Continue Shopping
+                        </button>
+                    </div>
+
+                   
+
+                    <!-- Recent Orders -->
+                    <div class="dashboard-card">
+                        <div class="card-header">
+                            <h2>Recent Orders</h2>
+                            <a href="#orders" class="view-all" onclick="switchTab('orders')">View All</a>
+                        </div>
+                        <div class="orders-table">
+                            {% if orders[:3] %}
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Date</th>
+                                        <th>Total</th>
+                                        
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for order in orders[:3] %}
+                                    <tr>
+                                        <td><strong>#{{ order.id }}</strong></td>
+                                        <td>{{ order.order_date.strftime('%b %d, %Y') }}</td>
+                                        <td>₦{{ "%.2f"|format(order.total_amount) }}</td>
+                                        <td>
+                                            
+                                        </td>
+                                        <td>
+                                           
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                            {% else %}
+                            <div class="empty-state">
+                                <i class="fas fa-shopping-bag"></i>
+                                <p>No orders yet</p>
+                                <a href="{{ url_for('products') }}" class="btn btn-primary">Start Shopping</a>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="quick-actions">
+                        <h2>Quick Actions</h2>
+                        <div class="actions-grid">
+                            <a href="{{ url_for('products') }}" class="action-card">
+                                <i class="fas fa-shopping-cart"></i>
+                                <h4>Browse Products</h4>
+                                <p>Discover our fresh bread</p>
+                            </a>
+                            <a href="#orders" onclick="switchTab('orders')" class="action-card">
+                                <i class="fas fa-history"></i>
+                                <h4>Order History</h4>
+                                <p>View past orders</p>
+                            </a>
+                           
+                            <a href="{{ url_for('contact') }}" class="action-card">
+                                <i class="fas fa-headset"></i>
+                                <h4>Contact Support</h4>
+                                <p>We're here to help</p>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orders Tab -->
+                <div class="tab-content" id="orders">
+                    <div class="dashboard-header">
+                        <h1>My Orders</h1>
+                        <div class="order-filters">
+                            <button class="" data-filter="all"></button>
+                            <button class="" data-filter="pending"></button>
+                            <button class="" data-filter="confirmed"></button>
+                            <button class="" data-filter="delivered"></button>
+                            <button class="" data-filter=""></button>
+                        </div>
+                    </div>
+
+                    <div class="orders-list">
+                        {% if orders %}
+                        {% for order in orders %}
+                        <div class="order-card" data-status="{{ order.status }}">
+                            <div class="order-header">
+                                <div class="order-info">
+                                    <h3>Order #{{ order.id }}</h3>
+                                    <p>Placed on {{ order.order_date.strftime('%B %d, %Y at %I:%M %p') }}</p>
+                                </div>
+                                <span class=" {{ order.status }}">
+                                
+                                </span>
+                            </div>
+                            <div class="order-body">
+                                <div class="order-items">
+                                    <p><strong>Items:</strong> {{ order.order_items|length }} product(s)</p>
+                                    <p><strong>Total:</strong> ₦{{ "%.2f"|format(order.total_amount) }}</p>
+                                    <p><strong>Delivery Address:</strong> {{ order.delivery_address[:50] }}...</p>
+                                </div>
+                                <div class="order-actions">
+                                    
+                                    {% if order.status == 'delivered' %}
+                                    <button class="btn btn-primary" onclick="reorder({{ order.id }})">
+                                        Order Again
+                                    </button>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="empty-state">
+                            <i class="fas fa-box-open"></i>
+                            <h3>No orders yet</h3>
+                            <p>Start shopping and your orders will appear here</p>
+                            <a href="{{ url_for('products') }}" class="btn btn-primary">Browse Products</a>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Addresses Tab -->
+                <div class="tab-content" id="addresses">
+                    <div class="dashboard-header">
+                        <h1>Delivery Addresses</h1>
+                        <button class="btn btn-primary" onclick="openAddressModal('add')">
+                            <i class="fas fa-plus"></i> Add New Address
+                        </button>
+                    </div>
+
+                    <div class="addresses-grid">
+                        <!-- Sample addresses - replace with actual data -->
+                        <div class="address-card">
+                            <div class="address-type">
+                                <i class="fas fa-home"></i>
+                                <span>Home</span>
+                            </div>
+                            <div class="address-details">
+                                <h4>{{ user.name }}</h4>
+                                <p>123 Sample Street, Ikeja<br>Lagos, Nigeria</p>
+                                <p>Phone: +234 801 234 5678</p>
+                            </div>
+                            <div class="address-actions">
+                                <button class="btn-edit" onclick="openAddressModal('edit', 1)">
+                                    <i class="fas fa-edit"></i> Edit
+                                </button>
+                                <button class="btn-delete" onclick="deleteAddress(1)">
+                                    <i class="fas fa-trash"></i> Delete
+                                </button>
+                            </div>
+                            <span class="default-badge">Default</span>
+                        </div>
+
+                        <div class="address-card-add" onclick="openAddressModal('add')">
+                            <i class="fas fa-plus-circle"></i>
+                            <p>Add New Address</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Tab -->
+                <div class="tab-content" id="profile">
+                    <div class="dashboard-header">
+                        <h1>Edit Profile</h1>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <form class="profile-form" id="profileForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="name">Full Name *</label>
+                                    <input type="text" id="name" name="name" value="{{ user.name }}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="+234 801 234 5678" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email Address *</label>
+                                <input type="email" id="email" name="email" value="{{ user.email }}" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="user_type"></label>
+                                
+                                    <option value="customer" {% if user.user_type == 'customer' %}selected{% endif %}></option>
+                                    <option value="distributor" {% if user.user_type == 'distributor' %}selected{% endif %}></option>
+                                    <option value="wholesale" {% if user.user_type == 'wholesale' %}selected{% endif %}></option>
+                                </select>
+                                <small></small>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save"></i> Save Changes
+                                </button>
+                                <button type="reset" class="btn btn-outline">
+                                    Cancel
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Password Tab -->
+                <div class="tab-content" id="password">
+                    <div class="dashboard-header">
+                        <h1>Change Password</h1>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <form class="password-form" id="passwordForm">
+                            <div class="form-group">
+                                <label for="current_password">Current Password *</label>
+                                <div class="password-input">
+                                    <input type="password" id="current_password" name="current_password" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('current_password')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="new_password">New Password *</label>
+                                <div class="password-input">
+                                    <input type="password" id="new_password" name="new_password" minlength="6" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('new_password')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                                <small>Minimum 6 characters</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="confirm_password">Confirm New Password *</label>
+                                <div class="password-input">
+                                    <input type="password" id="confirm_password" name="confirm_password" minlength="6" required>
+                                    <button type="button" class="password-toggle" onclick="togglePassword('confirm_password')">
+                                        <i class="fas fa-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-lock"></i> Update Password
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+               
+
+                <!-- Settings Tab -->
+                <div class="tab-content" id="settings">
+                    <div class="dashboard-header">
+                        <h1>Account Settings</h1>
+                    </div>
+
+                    <div class="dashboard-card">
+                        <h3>Notifications</h3>
+                        <div class="settings-section">
+                            <div class="setting-item">
+                                <div>
+                                    <h4>Email Notifications</h4>
+                                    <p>Receive order updates and promotions via email</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="setting-item">
+                                <div>
+                                    <h4>SMS Notifications</h4>
+                                    <p>Get delivery updates via SMS</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="setting-item">
+                                <div>
+                                    <h4>Marketing Communications</h4>
+                                    <p>Receive special offers and promotions</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <h3>Privacy</h3>
+                        <div class="settings-section">
+                            <div class="setting-item">
+                                <div>
+                                    <h4>Profile Visibility</h4>
+                                    <p>Make your profile visible to other users</p>
+                                </div>
+                                <label class="toggle">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <h3>Danger Zone</h3>
+                        <div class="settings-section danger-zone">
+                            <button class="btn btn-danger" onclick="deleteAccount()">
+                                <i class="fas fa-exclamation-triangle"></i> Delete Account
+                            </button>
+                            <p>Once you delete your account, there is no going back. Please be certain.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Address Modal -->
+<div class="modal" id="addressModal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="modalTitle">Add New Address</h2>
+            <button class="modal-close" onclick="closeAddressModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <form class="modal-form" id="addressForm">
+            <div class="form-group">
+                <label for="address_type">Address Type *</label>
+                <select id="address_type" name="address_type" required>
+                    <option value="home">Home</option>
+                    <option value="office">Office</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="full_name">Full Name *</label>
+                <input type="text" id="full_name" name="full_name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone_number">Phone Number *</label>
+                <input type="tel" id="phone_number" name="phone_number" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Address *</label>
+                <textarea id="address" name="address" rows="3" required></textarea>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="city">City *</label>
+                    <input type="text" id="city" name="city" value="Lagos" required>
+                </div>
+                <div class="form-group">
+                    <label for="state">State *</label>
+                    <input type="text" id="state" name="state" value="Lagos" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="is_default">
+                    <span>Set as default address</span>
+                </label>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Save Address</button>
+                <button type="button" class="btn btn-outline" onclick="closeAddressModal()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}
